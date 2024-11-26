@@ -2,6 +2,7 @@ import { type Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 import svgToDataUri from "mini-svg-data-uri";
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
+import type { PluginAPI } from 'tailwindcss/types/config';
 
 export default {
   darkMode: ["class", "class"],
@@ -35,7 +36,7 @@ export default {
   	}
   },
   plugins: [
-    function ({ matchUtilities, theme }) {
+    function ({ matchUtilities, theme }: PluginAPI) {
       matchUtilities(
         {
           "bg-grid": (value: string) => ({

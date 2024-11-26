@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, useAnimate } from "framer-motion";
-import { Github, Mail, LinkedinIcon, Send } from "lucide-react";
+import { Mail, LinkedinIcon, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -49,12 +49,14 @@ export default function Contact() {
     animate(scope.current, { y: [0, -5, 0] }, { duration: 0.3 });
   };
 
-  const handleEmailCopy = () => {
-    navigator.clipboard.writeText("JadenDeve@gmail.com");
-    setEmailCopied(true);
-    setTimeout(() => {
-      setEmailCopied(false);
-    }, 2000);
+  const handleEmailCopy = async () => {
+    try {
+      await navigator.clipboard.writeText("jadenbento@gmail.com");
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (error) {
+      console.error("Failed to copy email:", error);
+    }
   };
 
   return (

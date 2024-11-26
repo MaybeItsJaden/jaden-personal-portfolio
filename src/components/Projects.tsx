@@ -1,9 +1,8 @@
-import { Github, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   SiNextdotjs,
-  SiReact,
   SiTailwindcss,
   SiTypescript,
 } from "react-icons/si";

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 
 import Lottie from "react-lottie";
+import Image from 'next/image';
 
 import { cn } from "@/utils/cn";
 
@@ -82,10 +83,12 @@ export const BentoGridItem = ({
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
         <div className="absolute h-full w-full">
           {img && (
-            <img
+            <Image
               src={img}
-              alt={img}
-              className={cn(imgClassName, "object-cover object-center ")}
+              alt={title?.toString() ?? ""}
+              width={500}
+              height={300}
+              className={imgClassName}
             />
           )}
         </div>
@@ -95,9 +98,11 @@ export const BentoGridItem = ({
           } `}
         >
           {spareImg && (
-            <img
+            <Image
               src={spareImg}
               alt={spareImg}
+              width={500}
+              height={300}
               className="h-full w-full object-cover object-center"
             />
           )}

@@ -91,8 +91,7 @@ export default function About() {
                 into SEO and digital campaigns.
               </p>
               <p className="mt-4 text-base leading-relaxed">
-                Currently in hospitality, where I've spent three years
-                developing strong user empathy and problem-solving skills -
+                I&apos;ve spent three years developing strong user empathy and problem-solving skills -
                 crucial abilities I now apply to creating intuitive software
                 solutions and enhanced user experiences.
               </p>
