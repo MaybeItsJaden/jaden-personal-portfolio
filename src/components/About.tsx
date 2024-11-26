@@ -27,7 +27,7 @@ export default function About() {
   ];
 
   return (
-    <div className="relative flex h-[100vh] w-full items-center justify-center overflow-hidden">
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
       {/* Spotlights positioned within bounds */}
       <div>
         <Spotlight
@@ -55,12 +55,12 @@ export default function About() {
 
       <section
         id="about"
-        className="relative z-10 mx-auto max-w-4xl px-4 py-16 text-center"
+        className="relative z-10 mx-auto max-w-3xl px-4 py-8 sm:py-16 text-center overflow-y-auto max-h-screen"
       >
-        <h1 className="mb-8 text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="mb-6 sm:mb-8 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
           About Me
         </h1>
-        <div className="text-muted-foreground space-y-12 text-lg">
+        <div className="text-muted-foreground space-y-8 sm:space-y-12 text-base sm:text-lg">
           <div className="flex flex-col items-center gap-4">
             <h2 className="flex items-center gap-2 text-2xl font-semibold">
               <FaGraduationCap className="h-6 w-6 text-purple-500" />
@@ -77,9 +77,9 @@ export default function About() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-4">
-            <h2 className="flex items-center gap-2 text-2xl font-semibold">
-              <FaBriefcase className="h-6 w-6 text-amber-500" />
+          <div className="flex flex-col items-center gap-3 sm:gap-4">
+            <h2 className="flex items-center gap-2 text-xl sm:text-2xl font-semibold">
+              <FaBriefcase className="h-5 w-5 sm:h-6 sm:w-6 text-amber-500" />
               <span>Professional Background</span>
             </h2>
             <div>
@@ -98,12 +98,12 @@ export default function About() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4">
-            <h2 className="flex items-center justify-center gap-2 text-2xl font-semibold">
-              <FaCode className="h-6 w-6 text-blue-500" />
+          <div className="flex flex-col gap-3 sm:gap-4">
+            <h2 className="flex items-center justify-center gap-2 text-xl sm:text-2xl font-semibold">
+              <FaCode className="h-5 w-5 sm:h-6 sm:w-6 text-blue-500" />
               <span>Programming Languages & Technologies</span>
             </h2>
-            <div className="grid grid-cols-4 gap-6 md:grid-cols-7">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-4 sm:gap-6">
               {technologies.map((tech) => (
                 <div
                   key={tech.name}
@@ -123,7 +123,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="mt-8 flex justify-center">
+          <div className="mt-6 sm:mt-8 flex justify-center">
             <a href="#contact" aria-label="Contact me">
               <Button size="lg">Get in Touch</Button>
             </a>

@@ -8,6 +8,7 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/utils/cn";
+import { Hamburger } from "./Hamburger";
 
 interface NavItem {
   name: string;
@@ -23,6 +24,7 @@ export const FloatingNav = ({
   className?: string;
 }) => {
   const { scrollYProgress } = useScroll();
+  const [isOpen, setIsOpen] = useState(false);
   const [visible, setVisible] = useState(true);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
@@ -45,20 +47,41 @@ export const FloatingNav = ({
         exit={{ opacity: 0, y: -100 }}
         transition={{ duration: 0.2 }}
         className={cn(
-          "sticky top-4 mx-auto w-fit z-[100] rounded-full border border-white/[0.1] bg-black/50 px-6 py-3 shadow-lg backdrop-blur-md",
+          "sticky top-4 z-[100]",
+          "mx-4 md:mx-auto",
+          "rounded-full border border-white/[0.1] bg-black/50 backdrop-blur-md",
+          "transition-all duration-300",
+          isOpen ? "w-full max-w-md" : "w-14 md:w-fit",
           className
         )}
       >
-        <nav className="flex items-center justify-center gap-6">
-          {navItems.map((navItem: NavItem, idx: number) => (
-            <Link
-              key={`link-${idx}`}
-              href={navItem.link}
-              className="relative text-sm font-medium text-slate-100 transition-colors hover:text-slate-300"
-            >
-              {navItem.name}
-            </Link>
-          ))}
+        <nav className={cn(
+          "flex items-center gap-6",
+          "px-3 py-3",
+          isOpen ? "justify-between" : "justify-start md:justify-center"
+        )}>
+          <Hamburger
+            isOpen={isOpen}
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden"
+          />
+          <div
+            className={cn(
+              "flex items-center gap-6",
+              isOpen ? "flex" : "hidden md:flex"
+            )}
+          >
+            {navItems.map((navItem: NavItem, idx: number) => (
+              <Link
+                key={`link-${idx}`}
+                href={navItem.link}
+                onClick={() => setIsOpen(false)}
+                className="relative text-sm font-medium text-slate-100 transition-colors hover:text-slate-300"
+              >
+                {navItem.name}
+              </Link>
+            ))}
+          </div>
         </nav>
       </motion.div>
     </AnimatePresence>

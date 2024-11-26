@@ -48,7 +48,7 @@ export default function Projects() {
   ];
 
   return (
-    <div className="relative flex h-[100vh] w-full items-center justify-center overflow-hidden">
+    <div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden">
       {/* Background with grid */}
       <div className="absolute inset-0 z-0 flex h-full w-full items-center justify-center bg-grid-black/[0.1] dark:bg-grid-white/[0.03]">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
@@ -56,17 +56,60 @@ export default function Projects() {
 
       <section
         id="projects"
-        className="relative z-10 mx-auto max-w-6xl px-4 py-16"
+        className="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:py-12"
       >
-        <h2 className="mb-12 text-center text-3xl font-bold">
+        <h2 className="mb-8 text-center text-3xl font-bold">
           Featured Projects
         </h2>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        
+        {/* Mobile: 1 column, full height snap scroll */}
+        <div className="grid gap-6 sm:hidden">
           {projects.map((project, index) => (
             <Card
               key={index}
               className={`group overflow-hidden bg-gradient-to-br transition-all hover:shadow-lg
-                         dark:hover:shadow-zinc-800 ${project.gradient} hover:scale-[1.02]`}
+                       dark:hover:shadow-zinc-800 ${project.gradient} hover:scale-[1.02]`}
+            >
+              <CardContent className="p-4">
+                <h3 className="mb-2 text-lg font-bold">{project.title}</h3>
+                <p className="text-muted-foreground mb-3 text-sm line-clamp-3">
+                  {project.description}
+                </p>
+                <div className="mb-3 flex gap-2">
+                  {project.icons.map((Icon, i) => (
+                    <Icon key={i} className="text-muted-foreground h-4 w-4" />
+                  ))}
+                </div>
+                <Button
+                  asChild
+                  disabled={!project.demoUrl}
+                  className="w-full rounded-lg border-2 border-indigo-500 bg-transparent 
+                            font-medium text-indigo-600 transition-all
+                            duration-300 hover:bg-indigo-50
+                            hover:shadow-[0_0_20px_rgba(99,102,241,0.15)]"
+                >
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2"
+                  >
+                    View Live
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Tablet/Desktop: 2-3 columns grid */}
+        <div className="hidden sm:grid gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:max-h-[calc(100vh-12rem)] sm:content-center">
+          {projects.map((project, index) => (
+            <Card
+              key={index}
+              className={`group overflow-hidden bg-gradient-to-br transition-all hover:shadow-lg
+                       dark:hover:shadow-zinc-800 ${project.gradient} hover:scale-[1.02]`}
             >
               <CardContent className="p-6">
                 <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
@@ -78,27 +121,24 @@ export default function Projects() {
                     <Icon key={i} className="text-muted-foreground h-5 w-5" />
                   ))}
                 </div>
-                <div className="flex gap-2">
-                  <Button
-                    asChild
-                    disabled={!project.demoUrl}
-                    className="rounded-lg border-2 border-indigo-500 bg-transparent 
-                              font-medium text-indigo-600 transition-all
-                              duration-300 
-                              hover:-translate-y-[2px] hover:bg-indigo-50
-                              hover:shadow-[0_0_20px_rgba(99,102,241,0.15)]"
+                <Button
+                  asChild
+                  disabled={!project.demoUrl}
+                  className="rounded-lg border-2 border-indigo-500 bg-transparent 
+                            font-medium text-indigo-600 transition-all
+                            duration-300 hover:-translate-y-[2px] hover:bg-indigo-50
+                            hover:shadow-[0_0_20px_rgba(99,102,241,0.15)]"
+                >
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
                   >
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2"
-                    >
-                      View Live
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                  </Button>
-                </div>
+                    View Live
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </Button>
               </CardContent>
             </Card>
           ))}
