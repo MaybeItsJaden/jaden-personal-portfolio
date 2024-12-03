@@ -52,14 +52,16 @@ export const FloatingNav = ({
           "rounded-full border border-white/[0.1] bg-black/50 backdrop-blur-md",
           "transition-all duration-300",
           isOpen ? "w-full max-w-md" : "w-14 md:w-fit",
-          className
+          className,
         )}
       >
-        <nav className={cn(
-          "flex items-center gap-6",
-          "px-3 py-3",
-          isOpen ? "justify-between" : "justify-start md:justify-center"
-        )}>
+        <nav
+          className={cn(
+            "flex items-center gap-6",
+            "px-3 py-3",
+            isOpen ? "justify-between" : "justify-start md:justify-center",
+          )}
+        >
           <Hamburger
             isOpen={isOpen}
             onClick={() => setIsOpen(!isOpen)}
@@ -68,7 +70,7 @@ export const FloatingNav = ({
           <div
             className={cn(
               "flex items-center gap-6",
-              isOpen ? "flex" : "hidden md:flex"
+              isOpen ? "flex" : "hidden md:flex",
             )}
           >
             {navItems.map((navItem: NavItem, idx: number) => (
