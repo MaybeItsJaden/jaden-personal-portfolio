@@ -1,23 +1,10 @@
 import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  SiNextdotjs,
-  SiTailwindcss,
-  SiTypescript,
-} from "react-icons/si";
+import { SiNextdotjs, SiTailwindcss, SiTypescript } from "react-icons/si";
 
 export default function Projects() {
   const projects = [
-    {
-      title: "Hotel Companion SaaS",
-      description:
-        "A modern platform for hospitality workers to ease the burden of their daily tasks. Features task management, AI-powered chat, and more.",
-      tags: ["Next.js", "TypeScript", "Tailwind"],
-      gradient: "from-purple-500/20 via-transparent to-transparent",
-      icons: [SiNextdotjs, SiTypescript, SiTailwindcss],
-      demoUrl: "https://hotel-companion.example.com",
-    },
     {
       title: "Coffee Maker Assistant",
       description:
@@ -26,6 +13,15 @@ export default function Projects() {
       gradient: "from-blue-500/20 via-transparent to-transparent",
       icons: [SiNextdotjs, SiTypescript, SiTailwindcss],
       demoUrl: "https://coffee-maker-assistant.example.com",
+    },
+    {
+      title: "Hotel Companion SaaS",
+      description:
+        "A modern platform for hospitality workers to ease the burden of their daily tasks. Features task management, AI-powered chat, and more.",
+      tags: ["Next.js", "TypeScript", "Tailwind"],
+      gradient: "from-purple-500/20 via-transparent to-transparent",
+      icons: [SiNextdotjs, SiTypescript, SiTailwindcss],
+      demoUrl: "https://hotel-companion.example.com",
     },
     {
       title: "Business Website",
@@ -61,7 +57,7 @@ export default function Projects() {
         <h2 className="mb-8 text-center text-3xl font-bold">
           Featured Projects
         </h2>
-        
+
         {/* Mobile: 1 column, full height snap scroll */}
         <div className="grid gap-6 sm:hidden">
           {projects.map((project, index) => (
@@ -72,7 +68,7 @@ export default function Projects() {
             >
               <CardContent className="p-4">
                 <h3 className="mb-2 text-lg font-bold">{project.title}</h3>
-                <p className="text-muted-foreground mb-3 text-sm line-clamp-3">
+                <p className="text-muted-foreground mb-3 line-clamp-3 text-sm">
                   {project.description}
                 </p>
                 <div className="mb-3 flex gap-2">
@@ -104,7 +100,7 @@ export default function Projects() {
         </div>
 
         {/* Tablet/Desktop: 2-3 columns grid */}
-        <div className="hidden sm:grid gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:max-h-[calc(100vh-12rem)] sm:content-center">
+        <div className="hidden gap-6 sm:grid sm:max-h-[calc(100vh-12rem)] sm:grid-cols-2 sm:content-center lg:grid-cols-3">
           {projects.map((project, index) => (
             <Card
               key={index}

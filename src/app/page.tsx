@@ -10,21 +10,18 @@ import { FloatingNav } from "@/components/ui/FloatingNavbar";
 
 const Page = () => {
   return (
-    <main className="fixed inset-0 h-screen w-full overflow-y-scroll overflow-x-hidden snap-mandatory snap-y scroll-smooth">
-      <FloatingNav 
-        navItems={navItems} 
-        className="text-white"
-      />
-      <div className="h-screen w-full snap-start snap-always overflow-x-hidden">
+    <main className="fixed inset-0 h-screen w-full snap-y snap-mandatory overflow-x-hidden overflow-y-scroll scroll-smooth">
+      <FloatingNav navItems={navItems} className="text-white" />
+      <div className="min-h-screen w-full snap-start snap-always overflow-x-hidden">
         <Hero />
       </div>
-      <div className="h-screen w-full snap-start snap-always overflow-x-hidden">
+      <div className="min-h-screen w-full snap-start snap-always overflow-x-hidden">
         <About />
       </div>
-      <div className="h-screen w-full snap-start snap-always overflow-x-hidden">
+      <div className="min-h-screen w-full snap-start snap-always overflow-x-hidden">
         <Projects />
       </div>
-      <div className="h-screen w-full snap-start snap-always overflow-x-hidden">
+      <div className="min-h-screen w-full snap-start snap-always overflow-x-hidden">
         <Contact />
       </div>
       <div className="snap-align-none overflow-x-hidden">
