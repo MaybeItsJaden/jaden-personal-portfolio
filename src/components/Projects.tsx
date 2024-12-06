@@ -12,7 +12,7 @@ export default function Projects() {
       tags: ["Next.js", "TypeScript", "Tailwind"],
       gradient: "from-blue-500/20 via-transparent to-transparent",
       icons: [SiNextdotjs, SiTypescript, SiTailwindcss],
-      demoUrl: "https://coffee-maker-assistant.example.com",
+      demoUrl: "/wip",
     },
     {
       title: "Hotel Companion SaaS",
@@ -21,7 +21,7 @@ export default function Projects() {
       tags: ["Next.js", "TypeScript", "Tailwind"],
       gradient: "from-purple-500/20 via-transparent to-transparent",
       icons: [SiNextdotjs, SiTypescript, SiTailwindcss],
-      demoUrl: "https://hotel-companion.example.com",
+      demoUrl: "/wip",
     },
     {
       title: "Business Website",
@@ -30,7 +30,7 @@ export default function Projects() {
       tags: ["Next.js", "TypeScript", "Tailwind"],
       gradient: "from-amber-500/20 via-transparent to-transparent",
       icons: [SiNextdotjs, SiTypescript, SiTailwindcss],
-      demoUrl: "https://business-website.example.com",
+      demoUrl: "/wip",
     },
     {
       title: "AI Savings Calculator",
@@ -39,7 +39,7 @@ export default function Projects() {
       tags: ["Next.js", "TypeScript", "Tailwind"],
       gradient: "from-emerald-500/20 via-transparent to-transparent",
       icons: [SiNextdotjs, SiTypescript, SiTailwindcss],
-      demoUrl: "https://ai-savings-calculator.example.com",
+      demoUrl: "/wip",
     },
   ];
 

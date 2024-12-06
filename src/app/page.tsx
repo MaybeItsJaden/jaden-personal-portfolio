@@ -21,11 +21,13 @@ const Page = () => {
       <div className="min-h-screen w-full snap-start snap-always overflow-x-hidden">
         <Projects />
       </div>
-      <div className="min-h-screen w-full snap-start snap-always overflow-x-hidden">
-        <Contact />
-      </div>
-      <div className="snap-align-none overflow-x-hidden">
-        <Footer />
+      <div className="flex min-h-screen w-full snap-start snap-always flex-col overflow-x-hidden">
+        <div className="flex-grow">
+          <Contact />
+        </div>
+        <div className="flex-shrink-0">
+          <Footer />
+        </div>
       </div>
     </main>
   );

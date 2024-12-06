@@ -21,9 +21,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/jsm-logo.png" sizes="any" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        />
       </head>
-      <body className={`${inter.className} overflow-x-hidden relative`}>
+      <body className={`${inter.className} relative overflow-x-hidden`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
