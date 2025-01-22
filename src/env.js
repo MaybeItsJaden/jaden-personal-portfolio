@@ -8,6 +8,9 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
+    SENDGRID_API_KEY: z.string(),
+    CONTACT_FORM_TO_EMAIL: z.string().email(),
+    CONTACT_FORM_FROM_EMAIL: z.string().email(),
   },
 
   /**
@@ -25,6 +28,9 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+    SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
+    CONTACT_FORM_TO_EMAIL: process.env.CONTACT_FORM_TO_EMAIL,
+    CONTACT_FORM_FROM_EMAIL: process.env.CONTACT_FORM_FROM_EMAIL,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

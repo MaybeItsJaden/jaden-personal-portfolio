@@ -17,20 +17,36 @@ export default function Contact() {
   const [scope, animate] = useAnimate();
   const [emailCopied, setEmailCopied] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", { name, email, message });
-    // Reset form fields
-    setName("");
-    setEmail("");
-    setMessage("");
-    // Trigger confetti
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
-    });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Form submitted:", data);
+        setName("");
+        setEmail("");
+        setMessage("");
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
+      } else {
+        console.error("Error:", data.error);
+        alert(`Failed to send message: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Unexpected error:", error);
+      alert("An unexpected error occurred. Please try again later.");
+    }
   };
 
   const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -40,18 +56,13 @@ export default function Contact() {
     }
   };
 
-  const buttonVariants = {
-    hover: { scale: 1.05 },
-    tap: { scale: 0.95 },
-  };
-
   const socialButtonAnimate = () => {
     animate(scope.current, { y: [0, -5, 0] }, { duration: 0.3 });
   };
 
   const handleEmailCopy = async () => {
     try {
-      await navigator.clipboard.writeText("jadenbento@gmail.com");
+      await navigator.clipboard.writeText("jadendeve@gmail.com");
       setEmailCopied(true);
       setTimeout(() => setEmailCopied(false), 2000);
     } catch (error) {
@@ -61,7 +72,7 @@ export default function Contact() {
 
   return (
     <div className="relative flex min-h-[calc(100vh-theme(space.20))] w-full items-center justify-center overflow-hidden">
-      {/* Background with grid */}
+      {/* Background Grid */}
       <div className="absolute inset-0 z-0 flex h-full w-full items-center justify-center bg-grid-black/[0.1] dark:bg-grid-white/[0.03]">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       </div>
@@ -71,6 +82,7 @@ export default function Contact() {
         className="relative z-10 mx-auto w-full max-w-4xl px-4 py-16"
       >
         <div className="grid gap-8 md:grid-cols-2">
+          {/* Form Section */}
           <div className="space-y-4">
             <h2 className="text-3xl font-bold">Get in Touch</h2>
             <p className="text-muted-foreground text-lg">
@@ -84,7 +96,7 @@ export default function Contact() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-full bg-white/90 backdrop-blur-sm border-2 hover:bg-white transition-all duration-300 shadow-lg focus:shadow-xl"
+                className="w-full border-2 bg-white/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-white focus:shadow-xl"
               />
               <Input
                 type="email"
@@ -92,7 +104,7 @@ export default function Contact() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full bg-white/90 backdrop-blur-sm border-2 hover:bg-white transition-all duration-300 shadow-lg focus:shadow-xl"
+                className="w-full border-2 bg-white/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-white focus:shadow-xl"
               />
               <div className="relative">
                 <Textarea
@@ -101,33 +113,33 @@ export default function Contact() {
                   onChange={handleMessageChange}
                   required
                   maxLength={MAX_MESSAGE_LENGTH}
-                  className="w-full bg-white/90 backdrop-blur-sm border-2 hover:bg-white transition-all duration-300 shadow-lg focus:shadow-xl h-32 resize-none"
+                  className="h-32 w-full resize-none border-2 bg-white/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-white focus:shadow-xl"
                 />
-                <span className="absolute bottom-2 right-2 text-xs text-muted-foreground">
+                <span className="text-muted-foreground absolute bottom-2 right-2 text-xs">
                   {message.length}/{MAX_MESSAGE_LENGTH}
                 </span>
               </div>
               <motion.div
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full bg-indigo-600 text-white shadow-lg transition-all duration-300 hover:bg-indigo-700 hover:shadow-xl"
                 >
                   <Send className="mr-2 h-4 w-4" /> Send Message
                 </Button>
               </motion.div>
             </form>
           </div>
+
+          {/* Social Section */}
           <div className="flex flex-col justify-center space-y-4">
             <h3 className="text-xl font-semibold">Connect with me</h3>
             <div className="flex flex-col space-y-4">
               <motion.div
                 ref={scope}
-                variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
                 onHoverStart={socialButtonAnimate}
@@ -136,14 +148,13 @@ export default function Contact() {
                   variant="outline"
                   size="lg"
                   onClick={handleEmailCopy}
-                  className="w-full justify-start bg-white/90 backdrop-blur-sm border-2 hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="w-full justify-start border-2 bg-white/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-white hover:shadow-xl"
                 >
                   <Mail className="mr-2 h-5 w-5" />
                   {emailCopied ? "Email Copied!" : "Email Me"}
                 </Button>
               </motion.div>
               <motion.div
-                variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
                 onHoverStart={socialButtonAnimate}
@@ -151,7 +162,7 @@ export default function Contact() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="w-full justify-start bg-white/90 backdrop-blur-sm border-2 hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="w-full justify-start border-2 bg-white/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-white hover:shadow-xl"
                   asChild
                 >
                   <a
